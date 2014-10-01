@@ -1,0 +1,29 @@
+<div class="row">
+    <ng-include src="'/src/html/static/development.tmpl.html'"></ng-include>
+    <div class="col-md-9">
+        <article>
+            <header>
+                <h1>Development: running</h1>
+            </header>
+            <div>
+                <div class="list-group">
+                    <p>
+                        To run the application in development mode we need to start the server. In the case of this sample, we're using the <a href="http://www.mongodb.org/">http-server</a> node module configured in package.json.
+                    </p>
+                    <pre>
+npm start
+                    </pre>
+                    <p>
+                        For mocking JSON requests, we'll use the json-server NodeJS module.
+                    </p>
+                    <pre>
+json-server api/mocks.json --port 8081
+                    </pre>
+                    <p>
+                        With servers up and running, we can see the application by opening <a href="http://localhost:8080/">http://localhost:8080/</a>.
+                    </p>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>

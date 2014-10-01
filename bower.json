@@ -1,0 +1,16 @@
+{
+    "name": "web-ui",
+    "private": true,
+    "version": "0.0.1",
+    "dependencies": {
+        "angular": "1.2.x",
+        "angular-route": "1.2.x",
+        "angular-resource": "1.2.x",
+        "jasmine": "2.0.x",
+        "bootstrap": "2.1.x",
+        "angular-bootstrap": "0.11.x",
+        "jquery": "2.1.x",
+        "angular-mocks": "1.2.x",
+        "ng-table": "0.3.x"
+    }
+}

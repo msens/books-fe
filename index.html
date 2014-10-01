@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="mainModule" ng-controller="mainCtrl" id="ng-app">
+<head>
+    <title ng-bind="title">My Application</title>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/bower_components/bootstrap/docs/assets/js/bootstrap.min.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/bower_components/ng-table/ng-table.min.js"></script>
+    <script src="/src/app.js"></script>
+    <link ng-href="/src/styles/{{theme}}" rel="stylesheet">
+</head>
+<body class="skin-blue">
+<ng-include src="'/src/html/menu.tmpl.html'"></ng-include>
+<div ng-view>
+</div>
+</body>
+</html>

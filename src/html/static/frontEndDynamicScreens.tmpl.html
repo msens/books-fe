@@ -1,0 +1,193 @@
+<div class="row">
+    <ng-include src="'/src/html/static/frontEnd.tmpl.html'"></ng-include>
+    <div class="col-md-9">
+        <article>
+            <header>
+                <h1>Front-end: dynamic screens</h1>
+            </header>
+            <div>
+                <div class="list-group">
+                    <p>
+                        This application contains both static and dynamic screens.
+                        Dynamic screens contain plain HTML, CSS and Javascript code that communicates with the server.
+                        An example of a dynamic screen can be see from <a href="#/page/books?api=http:%2F%2Flocalhost:8081">Books</a> menu item.
+                    </p>
+                    <p>
+                        Following steps describe how to add a new dynamic screen.
+                    </p>
+                    <div id="link" class="list-group-item">
+                        <h3 class="list-group-item-heading">Create a link</h3>
+                        <div class="list-group-item-text">
+                            <p>
+                                Create a link to the new screen with the <code>href="#/page/[NAME]"</code>.
+                                <strong>[NAME]</strong> can be any alpha-numeric string.
+                                Spaces are not allowed.
+                            </p>
+                            <p>
+                                Following example is taken from the menu.tmpl.html:
+                            </p>
+                            <pre>
+&lt;li&gt;&lt;a href="#/page/books?api=http:%2F%2Flocalhost:8081"&gt;Books&lt;/a&gt;&lt;/li&gt;
+                            </pre>
+                        </div>
+                    </div>
+                    <div id="router" class="list-group-item">
+                        <h3 class="list-group-item-heading">Add the route</h3>
+                        <div class="list-group-item-text">
+                            <p>
+                                Different screens or views are defined using AngularJS routing.
+                                Route to the new screen should be specified in config.ctrl.js. It contains <code>templateUrl</code> and <code>controller</code>.
+                                <ul>
+                                    <li>templateUrl: path or function that returns a path to an html template that should be used by ngView.</li>
+                                    <li>controller: function that should be associated with newly created scope or the name of a registered controller if passed as a string.</li>
+                                </ul>
+                            </p>
+                            <p>
+                                Before writing the actual route, we should write tests.
+                                Following snippet was taken from config.ctrl.spec.js.
+                            </p>
+                            <pre>
+describe('/page/books path', function() {
+    var path = '#/page/books';
+    it('should use the template /src/html/books/books.tmpl.html', function() {
+        expect(route.routes[path].templateUrl).toEqual('/src/html/books/books.tmpl.html');
+    });
+    it('should use the booksCtrl controller', function() {
+        expect(route.routes[path].controller).toBe('booksCtrl');
+    });
+});
+                            </pre>
+                            <ng-include src="'/src/html/static/jasmineUnitTestsBefore.tmpl.html'"></ng-include>
+                            <p>
+                                Next, we should write the implementation code. Following snipped was taken from config.ctrl.js.
+                            </p>
+                            <pre>
+.when('/page/books', {
+    templateUrl: '/src/html/books/books.tmpl.html',
+    controller: 'booksCtrl'
+})
+                            </pre>
+                            <ng-include src="'/src/html/static/jasmineUnitTestsAfter.tmpl.html'"></ng-include>
+                            <p>
+                                Please consult config.ctrl.spec.js and config.ctrl.js for the complete tests and the implementation code.
+                                Please consult AngularJS <a href="https://docs.angularjs.org/api/ngRoute/provider/$routeProvider">routeProvider</a> for more info.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="controller" class="list-group-item">
+                        <h3 class="list-group-item-heading">Create new controller</h3>
+                        <div class="list-group-item-text">
+                            <p>
+                                AngularJS controllers are used to set the screen initial state and define behavior.
+                                Controllers reside inside modules.
+                                Each screen should have one module and one or more controllers.
+                            </p>
+                            <p>
+                                To create a new module and controller create new directory inside src/html and copy into it the template.ctrl.js.
+                                For example, <a href="#/page/books?api=http:%2F%2Flocalhost:8081">books screen</a> has module and controller defined in src/html/books/books.ctrl.js.
+                                Change MODULE_NAME and CONTROLLER_NAME values.
+                                Following example is taken from the books.ctrl.js file.
+                            </p>
+                            <pre>
+angular.module('booksModule', ['ngTable'])
+    .controller('booksCtrl', ['$scope', '$http', 'ngTableParams',
+        function ($scope, $http, ngTableParams) {
+            ...
+        }
+    ]);
+                            </pre>
+                            <p>
+                                ngTable is the name of the additional module we're using.
+                                $http and ngTableParams are sets of functions that will be injected in our code.
+                            </p>
+                            <p>
+                                In order for the new module to be used by the application, it should be added to the main.ctrl.spec.js.
+                            </p>
+                            <pre>
+angular.module('mainModule', [
+    'ngRoute',
+    'configModule',
+    'booksModule'
+])
+                            </pre>
+                            <p>
+                                Before writing the actual controller code, we should write tests.
+                                Following snippet was taken from books.ctrl.spec.js.
+                            </p>
+                            <pre>
+describe('listBooks function', function() {
+    beforeEach(function() {
+        httpBackend.expectGET('/api/v1/books').respond(books);
+    });
+    it('should set value to the books variable', function() {
+        scope.books = [];
+        scope.listBooks();
+        httpBackend.flush();
+        expect(scope.books).toEqual(books);
+    });
+});
+                            </pre>
+                            <ng-include src="'/src/html/static/jasmineUnitTestsBefore.tmpl.html'"></ng-include>
+                            <p>
+                                After each test is written, we should write the actual implementation inside the controller function.
+                                Following snippet was taken from books.ctrl.js.
+                                It represent the implementation of the test written above.
+                            </p>
+                            <pre>
+$scope.listBooks = function() {
+    $http.get('/api/v1/books').then(function(response) {
+        $scope.books = response.data;
+    });
+};
+                            </pre>
+                            <ng-include src="'/assets/html/static/jasmineUnitTestsAfter.tmpl.html'"></ng-include>
+                            <p>
+                                With the implementation code written above, we're having books retrieved from the server and placed in the $scope.
+                                Now it's time to display data on the screen.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="htmlTemplate" class="list-group-item">
+                        <h3 class="list-group-item-heading">Create new HTML template</h3>
+                        <div class="list-group-item-text">
+                            <p>
+                                Create new HTML file in the same location as specified previously in the router (i.e. /src/html/books/books.tmpl.html).
+                                It is important to understand that this template will be injected into the HTML from index.html.
+                                Do NOT include HTML elements like <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code>, etc
+                            </p>
+                            <p>
+                                To display the list of books from obtained from the controller above, code would be something like following (code snippet was taken from books.tmpl.html).
+                            </p>
+                            <pre>
+&lt;table id="books" class="table table-condensed table-striped table-hover ng-table-responsive"&gt;
+    &lt;tbody ng-repeat="book in books"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            <code ng-non-bindable>{{book.title}}</code>
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+                            </pre>
+                            <p>
+                                This code snippet assigns IDs to the table (IDs are used for BDD testing).
+                                It specifies bootstrap styles through the <code>class</code>.
+                                It repeats <code>tbody</code> for each book found in books JSON obtained through the controller above.
+                                Finally, <code ng-non-bindable>{{book.title}}</code> displays book title.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="open" class="list-group-item">
+                        <h3 class="list-group-item-heading">Open</h3>
+                        <div class="list-group-item-text">
+                            <p>
+                                Open the newly created dynamic template by navigating to the address specified in the router.
+                                Please see the final version of the <a href="#/page/books?api=http:%2F%2Flocalhost:8081">Books example</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
