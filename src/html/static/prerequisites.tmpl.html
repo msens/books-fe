@@ -8,19 +8,22 @@
             <div>
                 <div class="list-group">
                     <p>
+                        This sample is based on <a href="https://angularjs.org/">AngularJS</a> as client side single page application <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> (or MVW) and <a href="http://getbootstrap.com/css/">Bootstrap CSS</a> for style definition.
+                        The application is decoupled from the server thus allowing us to use any server side technology or framework.
+                        The only relation with the server is through JSON API and static files (HTML, CSS, JS).
+                        There is no server-side rendering.
+                    </p>
+                    <p>
                         This application is created using a simple <a href="https://www.npmjs.org/package/http-server">http-server</a> as back-end.
                         In real world situations you should use some more powerful and flexible server like <a href="http://nodejs.org/">NodeJS</a> (JavaScript), <a href="https://www.playframework.com/">Play!</a> (Scala and Java), <a href="http://spray.io/">Spray</a> (Scala API server), etc.
-                        Front-end is decoupled from the back-end and based on HTML, JavaScript and CSS.
-                        Communication between the back-end and the front-end is done through the REST API.
+                    </p>
+                    <p>
+                        This sample is used only for the development of the front-end part of the application.
+                        To facilitate easier and server-side independent development, http-server and json-server NodeJS modules are used.
                     </p>
                     <div id="navsBars" class="list-group-item">
                         <h3 class="list-group-item-heading">Front-end</h3>
                         <div class="list-group-item-text">
-                            <p>
-                                Front-end is based on HTML, JavaScript and CSS.
-                                There is no server side rendering.
-                                Whole front-end is deployed to the browser as static pages and uses REST JSON to obtain data from the server.
-                            </p>
                             <p>
                                 To develop the front-end, following needs to be downloaded and installed:
                                 <ul>
@@ -42,6 +45,8 @@ npm install
                                 <a href="http://bower.io/">Bower</a> is used to download dependencies.
                                 Testing is performed with <a href="http://gruntjs.com/">Grunt</a> which, in turn, executes <a href="http://jasmine.github.io/">Jasmine</a> specs.
                                 The rest of tasks is done with <a href="http://gulpjs.com/">Gulp</a>.
+                                Static files are server using NPM module <a href="https://www.npmjs.org/package/http-server">http-server</a>.
+                                JSON API mocks are created with NPM module <a href="https://www.npmjs.org/package/json-server">json-server</a>.
                             </p>
                         </div>
                     </div>
