@@ -20,7 +20,9 @@ module.exports = function(grunt) {
                 'src/app.js'
             ],
             options: {
-                specs: 'src/test/html/**/*.spec.js'
+                specs: 'src/test/html/**/*.spec.js',
+                display: 'short',
+                summary: true
             }
         }
     }

@@ -95,11 +95,14 @@ angular.module('booksModule', ['ngTable'])
                 });
             };
             $scope.getApiUrl = function(url) {
-                if ($location.search().api !== undefined) {
-                    return $location.search().api + url;
+                if ($location.search().mocksPort !== undefined) {
+                    return $scope.getDomain() + ':' + $location.search().mocksPort + url;
                 } else {
                     return '/api/1' + url;
                 }
+            };
+            $scope.getDomain = function() {
+                return $location.protocol() + '://' + $location.host();
             };
             // TODO Test
             $scope.listBooks();

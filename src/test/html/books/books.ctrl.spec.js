@@ -6,14 +6,13 @@ describe('booksModule controllers', function() {
 
     describe('booksCtrl controller', function() {
 
-        var scope, location, book, books, bookId;
+        var scope, location, book, books;
         var listBooksSpy;
 
         beforeEach(
             inject(function($rootScope, $injector, $controller, $httpBackend, $location, ngTableParams) {
                 book = {id: 1};
                 books = [book];
-                bookId = 1;
                 scope = $rootScope.$new();
                 location = $location;
                 $controller("booksCtrl", {
@@ -50,21 +49,21 @@ describe('booksModule controllers', function() {
 
         describe('openBook function', function() {
             beforeEach(function() {
-                httpBackend.expectGET('/api/1/books/' + bookId).respond(book);
+                httpBackend.expectGET('/api/1/books/' + book.id).respond(book);
             });
             it('should call GET /api/1/books/[BOOK_ID]', function() {
-                scope.openBook(bookId);
+                scope.openBook(book.id);
                 httpBackend.flush();
             });
             it('should set value to the book variable', function() {
                 scope.book = {};
-                scope.openBook(bookId);
+                scope.openBook(book.id);
                 httpBackend.flush();
                 expect(scope.book).toEqual(book);
             });
             it('should set value to the originalBook variable', function() {
                 scope.originalBook = {};
-                scope.openBook(bookId);
+                scope.openBook(book.id);
                 httpBackend.flush();
                 expect(scope.originalBook).toEqual(book);
             });
@@ -145,7 +144,7 @@ describe('booksModule controllers', function() {
                 spyOn(scope, 'listBooks');
                 spyOn(scope, 'newBook');
                 scope.book = book;
-                httpBackend.expectDELETE('/api/1/books/' + bookId).respond();
+                httpBackend.expectDELETE('/api/1/books/' + book.id).respond();
             });
             it('should call DELETE /api/1/books/[BOOK_ID]', function() {
                 scope.deleteBook();
@@ -340,10 +339,10 @@ describe('booksModule controllers', function() {
             it('should return /api/1', function() {
                 expect(scope.getApiUrl(url)).toEqual('/api/1' + url);
             });
-            it('should use api search param', function() {
-                var apiUrl = 'http://example.com/api';
-                location.search('api', apiUrl);
-                expect(scope.getApiUrl(url)).toEqual(apiUrl + url);
+            it('should use mocksPort search param', function() {
+                var mocksPort = '1234';
+                location.search('mocksPort', mocksPort);
+                expect(scope.getApiUrl(url)).toEqual(scope.getDomain() + ':' + mocksPort + url);
             });
         });
 
