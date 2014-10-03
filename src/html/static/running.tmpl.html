@@ -8,13 +8,14 @@
             <div>
                 <div class="list-group">
                     <p>
-                        To run the application in development mode we need to start the server. In the case of this sample, we're using the <a href="http://www.mongodb.org/">http-server</a> node module configured in package.json.
+                        To run the application in development mode we need to start the server.
+                        In the case of this sample, we're using the <a href="https://www.npmjs.org/package/http-server">http-server</a> NodeJS module configured in package.json.
                     </p>
                     <pre>
 npm start
                     </pre>
                     <p>
-                        For mocking JSON requests, we'll use the json-server NodeJS module.
+                        For mocking JSON requests, we'll use the <a href="https://www.npmjs.org/package/json-server">json-server</a> NodeJS module. The initial set of mocks can be found in api/mocks.json.
                     </p>
                     <pre>
 json-server api/mocks.json --port 8081
