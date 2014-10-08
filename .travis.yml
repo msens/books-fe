@@ -1,0 +1,21 @@
+language: node_js
+
+notifications:
+  email:
+  - viktor@farcic.com
+
+before_install:
+    npm install -g grunt-cli
+    npm install -g gulp
+    npm install -g bower
+    npm install -g http-server
+    npm install -g json-server
+
+script:
+    gulp test
+
+deploy:
+  provider: heroku
+  api_key: 16d908f9-4c16-447e-94ed-3d390a6890c5
+  app: angular-web-ui-sample
+  strategy: git
