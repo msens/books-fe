@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "bower install && gulp js",
     "start": "http-server -p 8080",
+    "test": "gulp test",
     "start-with-mocks": "http-server -p 8080 & json-server api/mocks.json --port 8081"
   },
   "dependencies": {
