@@ -10,6 +10,7 @@ angular.module('booksModule', ['ngTable'])
                     $scope.setTableParams();
                 });
             };
+
             $scope.openBook = function(bookId) {
                 $http.get($scope.getApiUrl('/books/' + bookId)).then(function(response) {
                     $scope.book = response.data;
