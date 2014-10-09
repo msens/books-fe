@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "postinstall": "bower install && gulp js",
-    "start": "http-server -p 8080",
+    "start": "node web.js",
     "start-with-mocks": "http-server -p 8080 & json-server api/mocks.json --port 8081"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "gulp-watch": "^1.0.7",
     "http-server": "^0.7.1",
     "jshint-stylish": "^1.0.0",
-    "json-server": "^0.4.1"
+    "json-server": "^0.4.1",
+    "express": "^4.9.6"
   }
 }

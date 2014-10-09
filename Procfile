@@ -1,1 +1,1 @@
-web: http-server -a localhost -p 5000
+web: node web.js
