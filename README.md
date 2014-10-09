@@ -12,7 +12,6 @@ Run following:
 npm install -g grunt-cli
 npm install -g gulp
 npm install -g bower
-npm install -g http-server
 npm install -g json-server
 npm install
 ```
@@ -29,7 +28,7 @@ gulp js
 To run the application in development mode we need to start the server.
 
 ```bash
-http-server -p 8080
+npm start
 ```
 
 For mocking JSON requests, we'll use the json-server NodeJS module. The initial set of mocks can be found in api/mocks.json.

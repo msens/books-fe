@@ -1,1 +1,1 @@
-web: node web.js & json-server api/mocks.json --port 8081
+web: node web.js

@@ -1,4 +1,15 @@
 <div class="container-fluid" ng-controller="booksCtrl">
+    <div class="alert alert-warning">
+        <p>
+            This screen is used only for purposes of demonstrating the communication with the server and uses mocks provided by the json-server NodeJS module.
+            Mocks should be used only locally for development purposes or for testing.
+            Production should use server that serves "real" JSON.
+        </p>
+        <p>
+            This screen will not work on Heroku due to limitations to use additional port required by json-server.
+            Please run the application locally using instructions from the <a href="#/page/static/running">Development: Running</a> screen.
+        </p>
+    </div>
     <div class="row">
         <div class="col-md-4">
             <table id="books" ng-table="tableParams" class="table table-condensed table-striped table-hover ng-table-responsive">

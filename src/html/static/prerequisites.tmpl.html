@@ -14,12 +14,12 @@
                         There is no server-side rendering.
                     </p>
                     <p>
-                        This application is created using a simple <a href="https://www.npmjs.org/package/http-server">http-server</a> as back-end.
+                        This application is created using a simple NodeJS module <a href="http://expressjs.com/">Express</a> as server.
                         In real world situations you should use some more powerful and flexible server like <a href="http://nodejs.org/">NodeJS</a> (JavaScript), <a href="https://www.playframework.com/">Play!</a> (Scala and Java), <a href="http://spray.io/">Spray</a> (Scala API server), etc.
                     </p>
                     <p>
                         This sample is used only for the development of the front-end part of the application.
-                        To facilitate easier and server-side independent development, http-server and json-server NodeJS modules are used.
+                        To facilitate easier and server-side independent development, Express and json-server NodeJS modules are used.
                     </p>
                     <div id="navsBars" class="list-group-item">
                         <h3 class="list-group-item-heading">Front-end</h3>
@@ -35,7 +35,6 @@
 npm install -g grunt-cli
 npm install -g gulp
 npm install -g bower
-npm install -g http-server
 npm install -g json-server
 npm install
                             </pre>
@@ -47,7 +46,7 @@ npm install
                                 <a href="http://bower.io/">Bower</a> is used to download dependencies.
                                 Testing is performed with <a href="http://gruntjs.com/">Grunt</a> which, in turn, executes <a href="http://jasmine.github.io/">Jasmine</a> specs.
                                 The rest of tasks is done with <a href="http://gulpjs.com/">Gulp</a>.
-                                Static files are server using NPM module <a href="https://www.npmjs.org/package/http-server">http-server</a>.
+                                Static files are server using NPM module <a href="http://expressjs.com/">Express</a>.
                                 JSON API mocks are created with NPM module <a href="https://www.npmjs.org/package/json-server">json-server</a>.
                             </p>
                         </div>
