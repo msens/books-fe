@@ -8,8 +8,6 @@ before_install:
  - npm install -g grunt-cli
  - npm install -g gulp
  - npm install -g bower
- - npm install -g http-server
- - npm install -g json-server
 
 script:
     gulp test
