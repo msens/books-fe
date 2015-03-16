@@ -12,13 +12,6 @@ describe('configModule controllers', function() {
 
     describe('config controller', function() {
 
-        describe('/page/home path', function() {
-            var path = '/page/home';
-            it('should use the template /src/html/home/home.tmpl.html', function() {
-                expect(route.routes[path].templateUrl).toEqual('/src/html/home/home.tmpl.html');
-            });
-        });
-
         describe('/page/books path', function() {
             var path = '/page/books';
             it('should use the template /src/html/books/books.tmpl.html', function() {
@@ -29,18 +22,9 @@ describe('configModule controllers', function() {
             });
         });
 
-        describe('/page/static/* path', function() {
-            it('should use the template /src/html/static/*.tmpl.html', function() {
-                expect(route.routes['/page/static/:name'].templateUrl({name: 'page1'}))
-                    .toEqual('/src/html/static/page1.tmpl.html');
-                expect(route.routes['/page/static/:name'].templateUrl({name: 'page2'}))
-                    .toEqual('/src/html/static/page2.tmpl.html');
-            });
-        });
-
         describe('unknown path', function() {
-            it('should redirect to /page/home', function() {
-                expect(route.routes[null].redirectTo).toEqual('/page/home')
+            it('should redirect to /page/books', function() {
+                expect(route.routes[null].redirectTo).toEqual('/page/books')
             });
         })
 
