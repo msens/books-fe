@@ -21,15 +21,15 @@ describe('booksModule controllers', function() {
                 });
                 scope.$location = location;
                 httpBackend = $httpBackend;
-                httpBackend.expectGET('/api/1/books').respond(books);
+                httpBackend.expectGET('/api/v1/books').respond(books);
             })
         );
 
         describe('listBooks function', function() {
             beforeEach(function() {
-                httpBackend.expectGET('/api/1/books').respond(books);
+                httpBackend.expectGET('/api/v1/books').respond(books);
             });
-            it('should call GET /api/1/books', function() {
+            it('should call GET /api/v1/books', function() {
                 scope.listBooks();
                 httpBackend.flush();
             });
@@ -49,9 +49,9 @@ describe('booksModule controllers', function() {
 
         describe('openBook function', function() {
             beforeEach(function() {
-                httpBackend.expectGET('/api/1/books/' + book.id).respond(book);
+                httpBackend.expectGET('/api/v1/books/' + book.id).respond(book);
             });
-            it('should call GET /api/1/books/[BOOK_ID]', function() {
+            it('should call GET /api/v1/books/[BOOK_ID]', function() {
                 scope.openBook(book.id);
                 httpBackend.flush();
             });
@@ -83,15 +83,15 @@ describe('booksModule controllers', function() {
         });
 
         describe('saveBook function', function() {
-            var putUrl = '/api/1/books/1';
-            var postUrl = '/api/1/books';
+            var putUrl = '/api/v1/books/1';
+            var postUrl = '/api/v1/books';
             beforeEach(function() {
                 spyOn(scope, 'listBooks');
                 spyOn(scope, 'newBook');
                 scope.book = book;
                 scope.originalBook = book;
             });
-            it('should call PUT /api/1/books', function() {
+            it('should call PUT /api/v1/books', function() {
                 httpBackend.expectPUT(putUrl).respond();
                 scope.saveBook();
                 httpBackend.flush();
@@ -122,7 +122,7 @@ describe('booksModule controllers', function() {
                 httpBackend.flush();
                 expect(scope.newBook).toHaveBeenCalled();
             });
-            it('should call POST /api/1/books when new book is saved', function() {
+            it('should call POST /api/v1/books when new book is saved', function() {
                 scope.originalBook = {};
                 httpBackend.expectPOST(postUrl).respond();
                 scope.saveBook();
@@ -144,9 +144,9 @@ describe('booksModule controllers', function() {
                 spyOn(scope, 'listBooks');
                 spyOn(scope, 'newBook');
                 scope.book = book;
-                httpBackend.expectDELETE('/api/1/books/' + book.id).respond();
+                httpBackend.expectDELETE('/api/v1/books/' + book.id).respond();
             });
-            it('should call DELETE /api/1/books/[BOOK_ID]', function() {
+            it('should call DELETE /api/v1/books/[BOOK_ID]', function() {
                 scope.deleteBook();
                 httpBackend.flush();
             });
@@ -165,9 +165,9 @@ describe('booksModule controllers', function() {
        describe('deleteAllBooks function', function() {
             beforeEach(function() {
                 spyOn(scope, 'listBooks');
-                httpBackend.expectDELETE('/api/1/books').respond();
+                httpBackend.expectDELETE('/api/v1/books').respond();
             });
-            it('should call DELETE /api/1/books', function() {
+            it('should call DELETE /api/v1/books', function() {
                 scope.deleteAllBooks();
                 httpBackend.flush();
             });
@@ -336,8 +336,8 @@ describe('booksModule controllers', function() {
 
         describe('getApiUrl function', function() {
             var url = '/my/url';
-            it('should return /api/1', function() {
-                expect(scope.getApiUrl(url)).toEqual('/api/1' + url);
+            it('should return /api/v1', function() {
+                expect(scope.getApiUrl(url)).toEqual('/api/v1' + url);
             });
             it('should use mocksPort search param', function() {
                 var mocksPort = '1234';

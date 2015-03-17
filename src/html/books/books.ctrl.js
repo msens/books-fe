@@ -98,7 +98,7 @@ angular.module('booksModule', ['ngTable'])
                 if ($location.search().mocksPort !== undefined) {
                     return $scope.getDomain() + ':' + $location.search().mocksPort + url;
                 } else {
-                    return '/api/1' + url;
+                    return '/api/v1' + url;
                 }
             };
             $scope.getDomain = function() {

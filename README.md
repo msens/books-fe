@@ -13,27 +13,28 @@ npm install -g grunt-cli
 npm install -g gulp
 npm install -g bower
 npm install -g json-server
+npm install --save-dev gulp-html-replace
+npm install --save-dev gulp-util
 npm install
 ```
 
 Running
 -------
 
-Before running the application we need to minify and concatenate our JS files.
+To run the application in **development mode** minify and concatenate our JS files and start the server.
 
 ```bash
+gulp html
 gulp js
-```
-
-To run the application in development mode we need to start the server.
-
-```bash
 npm start
 ```
 
-For mocking JSON requests, we'll use the json-server NodeJS module. The initial set of mocks can be found in api/mocks.json.
+To run the application in **production mode** minify and concatenate our JS files, start the server and start the json-server.
 
 ```bash
+# Each command should be run in a separate command prompt
+gulp watch --mock 8081
+npm start
 json-server api/mocks.json --port 8081
 ```
 
