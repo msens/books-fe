@@ -20,6 +20,19 @@
       "author": "Author 3",
       "price": 333.33,
       "description": "Description 3"
+    },
+    {
+      "id": 111,
+      "title": 222,
+      "author": 333,
+      "link": "http://localhost:8081/books/111"
+    },
+    {
+      "id": 123,
+      "title": "BDD Assistant",
+      "author": "Viktor Farcic",
+      "description": "Open source BDD stories editor and runner",
+      "link": "http://172.17.42.1:8081/books/123"
     }
   ]
 }

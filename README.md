@@ -31,7 +31,7 @@ npm start
 json-server api/mocks.json --port 8081
 ```
 
-To run **test** the application.
+To run application **unit tests**.
 
 ```bash
 gulp test

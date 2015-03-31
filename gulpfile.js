@@ -18,7 +18,7 @@ gulp.task('html', function() {
         .pipe(htmlreplace({
             'menu': {
                 src: [['#/page/books' + (util.env.mock ? '?mocksPort=' + util.env.mock : ''), 'Books']],
-                tpl: '<li><a href="%s">%s</a></li>'
+                tpl: '<li><a id="books" href="%s">%s</a></li>'
             }
         }))
         .pipe(gulp.dest('src/html/replaced'));
