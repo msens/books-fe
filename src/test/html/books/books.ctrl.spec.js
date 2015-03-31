@@ -274,31 +274,6 @@ describe('booksModule controllers', function() {
             });
         });
 
-        describe('pricePattern function', function() {
-            it('should start with a number', function() {
-                expect('a1').not.toMatch(scope.pricePattern());
-            });
-            it('should start with at least one digit', function() {
-                expect('.123').not.toMatch(scope.pricePattern());
-            });
-            it('should have at least one digit', function() {
-                expect('.23').not.toMatch(scope.pricePattern());
-            });
-            it('should allow only numbers and one dot (.) as decimal separator', function() {
-                expect('x.23').not.toMatch(scope.pricePattern());
-                expect('23.x').not.toMatch(scope.pricePattern());
-            });
-            it('should return true when only digits', function() {
-                expect('123').toMatch(scope.pricePattern());
-            });
-            it('should return true when digits followed with dot (.)', function() {
-                expect('123.').toMatch(scope.pricePattern());
-            });
-            it('should return true when digits followed with dot (.) and more digits', function() {
-                expect('123.45').toMatch(scope.pricePattern());
-            });
-        });
-
         describe('setTableParams function', function() {
             it('should assign new ngTableParams to tableParams', function() {
                 scope.setTableParams();

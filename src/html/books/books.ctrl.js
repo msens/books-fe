@@ -74,9 +74,6 @@ angular.module('booksModule', ['ngTable'])
                     $scope.book.id !== ''
                 );
             };
-            $scope.pricePattern = function() {
-                return (/^[\d]+\.*(\d)*$/);
-            };
             $scope.setTableParams = function() {
                 var total = 0;
                 if ($scope.books !== undefined) total = $scope.books.length;

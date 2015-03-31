@@ -21,7 +21,7 @@ npm install
 Running
 -------
 
-To run the application in **development mode** minify and concatenate our JS files and start the server.
+To run the application in **production mode** minify and concatenate our JS files and start the server.
 
 ```bash
 gulp html
@@ -29,7 +29,7 @@ gulp js
 npm start
 ```
 
-To run the application in **production mode** minify and concatenate our JS files, start the server and start the json-server.
+To run the application in **development mode** minify and concatenate our JS files, start the server and start the json-server.
 
 ```bash
 # Each command should be run in a separate command prompt

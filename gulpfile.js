@@ -7,6 +7,7 @@ var jasmine = require('gulp-jasmine');
 var jshint = require('gulp-jshint');
 var less = require('gulp-less');
 var htmlreplace = require('gulp-html-replace');
+var replace = require('gulp-replace');
 var util = require('gulp-util');
 require('jshint-stylish');
 require('gulp-grunt')(gulp);
