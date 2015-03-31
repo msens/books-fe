@@ -16,18 +16,11 @@ npm install -g json-server
 npm install --save-dev gulp-html-replace
 npm install --save-dev gulp-util
 npm install
+bower install --allow-root --config.interactive=false
 ```
 
 Running
 -------
-
-To run the application in **production mode** minify and concatenate our JS files and start the server.
-
-```bash
-gulp html
-gulp js
-npm start
-```
 
 To run the application in **development mode** minify and concatenate our JS files, start the server and start the json-server.
 
@@ -36,6 +29,20 @@ To run the application in **development mode** minify and concatenate our JS fil
 gulp watch --mock 8081
 npm start
 json-server api/mocks.json --port 8081
+```
+
+To run **test** the application.
+
+```bash
+gulp test
+```
+
+To run the application in **production mode** minify and concatenate our JS files and start the server.
+
+```bash
+gulp html
+gulp js
+npm start
 ```
 
 With servers up and running, we can see the application by opening [http://localhost:8080/](http://localhost:8080/).
