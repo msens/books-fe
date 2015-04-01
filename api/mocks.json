@@ -20,13 +20,6 @@
       "author": "Author 3",
       "description": "Description 3",
       "link": "http://172.17.42.1:8081/books/3"
-    },
-    {
-      "id": 123,
-      "title": "BDD Assistant",
-      "author": "Viktor Farcic",
-      "description": "Open source BDD stories editor and runner",
-      "link": "http://172.17.42.1:8081/books/123"
     }
   ]
 }
