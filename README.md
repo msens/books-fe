@@ -60,4 +60,7 @@ With servers up and running, we can see the application by opening [http://local
 TODO
 ====
 
+Create a new branch
 Remove Dockerfile, Dockerfile.unit_tests
+Change presentation references in notes to the new branch
+

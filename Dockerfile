@@ -28,9 +28,6 @@ ADD src /app/src
 
 CMD ["/app/run.sh"]
 
-# BUILD
-# docker build -t vfarcic/books-fe .
-
 # UNIT TESTS
 # docker run -t --rm -e MODE=unit_tests vfarcic/books-fe
 
