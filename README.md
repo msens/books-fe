@@ -37,7 +37,16 @@ To run application **unit tests**.
 gulp test
 ```
 
-To run the application in **production mode** minify and concatenate our JS files and start the server.
+To run the application in **production mode** minify and concatenate JS files, start the **mock** and the **express** server.
+
+```bash
+gulp html --mock 8081
+gulp js
+json-server api/mocks.json --port 8081 &
+npm start
+```
+
+To run the application in **production mode** minify and concatenate JS files and start the **express** server.
 
 ```bash
 gulp html
