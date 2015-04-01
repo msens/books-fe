@@ -2,30 +2,24 @@
   "books": [
     {
       "id": 1,
-      "title": "Title 1",
-      "author": "Author 1",
-      "price": 111.11,
-      "description": "Description 1"
+      "title": "TDD for Java Developers",
+      "author": "Viktor Farcic",
+      "description": "Cool book!",
+      "link": "http://172.17.42.1:8081/books/1"
     },
     {
       "id": 2,
       "title": "Title 2",
       "author": "Author 2",
-      "price": 222.22,
-      "description": "Description 2"
+      "description": "Description 2",
+      "link": "http://172.17.42.1:8081/books/2"
     },
     {
       "id": 3,
       "title": "Title 3",
       "author": "Author 3",
-      "price": 333.33,
-      "description": "Description 3"
-    },
-    {
-      "id": 111,
-      "title": 222,
-      "author": 333,
-      "link": "http://localhost:8081/books/111"
+      "description": "Description 3",
+      "link": "http://172.17.42.1:8081/books/3"
     },
     {
       "id": 123,

@@ -1,19 +1,20 @@
 <div class="container-fluid" ng-controller="booksCtrl">
     <div class="row">
         <div class="col-md-4">
-            <h2 id="title">Books</h2>
             <table id="books" ng-table="tableParams" class="table table-condensed table-striped table-hover ng-table-responsive">
                 <thead>
                 <tr>
-                    <th>
+                    <th id="title">
+                        Books
+                    </th>
+                    <th class="text-right">
                         <button class="btn btn-primary" id="newBook" ng-click="newBook()" type="button">New Book</button>
-                        <button class="btn btn-primary" id="deleteAllBooks" ng-click="deleteAllBooks()" type="button">Delete All Books</button>
                     </th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="book in $data">
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <a id="book{{book.id}}" href="" ng-click="openBook(book.id)">{{book.title}}</a>
                     </td>
                 </tr>

@@ -162,22 +162,6 @@ describe('booksModule controllers', function() {
             });
         });
 
-       describe('deleteAllBooks function', function() {
-            beforeEach(function() {
-                spyOn(scope, 'listBooks');
-                httpBackend.expectDELETE('/api/v1/books').respond();
-            });
-            it('should call DELETE /api/v1/books', function() {
-                scope.deleteAllBooks();
-                httpBackend.flush();
-            });
-            it('should call listBooks function', function() {
-                scope.deleteAllBooks();
-                httpBackend.flush();
-                expect(scope.listBooks).toHaveBeenCalled();
-            });
-        });
-
         describe('cssClass function', function() {
             var ngModelController;
             beforeEach(function() {

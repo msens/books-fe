@@ -44,11 +44,6 @@ angular.module('booksModule', ['ngTable'])
                     $scope.newBook();
                 });
             };
-            $scope.deleteAllBooks = function() {
-                $http.delete($scope.getApiUrl('/books')).then(function() {
-                    $scope.listBooks();
-                });
-            };
             $scope.cssClass = function(ngModelController) {
                 return {
                     'has-error': ngModelController.$invalid,

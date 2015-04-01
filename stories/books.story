@@ -47,3 +47,18 @@ When Web user clicks the element saveBook
 Then Web element book123 is present
 
 Examples:
+
+Scenario: Should be able to display book details
+
+Meta:
+
+
+Given Web home page is opened
+When Web user clicks the element books
+When Web user clicks the element book1
+Then Web element bookId should have value 1
+Then Web element bookTitle should have value TDD for Java Developers
+Then Web element bookAuthor should have value Viktor Farcic
+Then Web element bookDescription should have value Cool book!
+
+Examples:
