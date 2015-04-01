@@ -55,3 +55,9 @@ npm start
 ```
 
 With servers up and running, we can see the application by opening [http://localhost:8080/](http://localhost:8080/).
+
+
+TODO
+====
+
+Remove Dockerfile, Dockerfile.unit_tests
