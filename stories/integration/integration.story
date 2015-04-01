@@ -21,15 +21,6 @@ After:
 
 
 
-Scenario: Books link should be present
-
-Meta:
-
-
-Then Web element title should have text Books
-
-Examples:
-
 Scenario: Should be able to create a new book
 
 Meta:
