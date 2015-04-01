@@ -28,10 +28,24 @@ ADD src /app/src
 
 CMD ["/app/run_tests.sh"]
 
+# BUILD
 # docker build -t vfarcic/books-fe-tests .
+
+# UNIT TESTS
 # docker run -t --rm vfarcic/books-fe-tests
+
+# FUNCTIONAL TESTS
 # docker run -t --rm \
 #   -v /home/vifarcic/IdeaProjects/books-fe/stories:/opt/bdd/data/stories \
 #   vfarcic/bdd-runner-phantomjs \
 #   -P url=http://172.17.42.1:8080 \
-#   -P widthHeight=1024,768
+#   -P widthHeight=1024,768 \
+#   --story_path data/stories/functional/**
+
+# INTEGRATION TESTS
+# docker run -t --rm \
+#   -v /home/vifarcic/IdeaProjects/books-fe/stories:/opt/bdd/data/stories \
+#   vfarcic/bdd-runner-phantomjs \
+#   -P url=http://172.17.42.1:8080 \
+#   -P widthHeight=1024,768 \
+#   --story_path data/stories/integration/**

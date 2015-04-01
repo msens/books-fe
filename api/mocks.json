@@ -9,9 +9,9 @@
     },
     {
       "id": 2,
-      "title": "Title 2",
-      "author": "Author 2",
-      "description": "Description 2",
+      "title": "How to delete something",
+      "author": "John Doe",
+      "description": "Deleting something is easy",
       "link": "http://172.17.42.1:8081/books/2"
     },
     {

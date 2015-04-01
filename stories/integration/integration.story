@@ -50,10 +50,21 @@ Scenario: Should be able to display book details
 Meta:
 
 
-When Web user clicks the element book1
-Then Web element bookId should have value 1
-Then Web element bookTitle should have value TDD for Java Developers
+When Web user clicks the element book123
+Then Web element bookId should have value 123
+Then Web element bookTitle should have value BDD Assistant
 Then Web element bookAuthor should have value Viktor Farcic
-Then Web element bookDescription should have value Cool book!
+Then Web element bookDescription should have value Open source BDD stories editor and runner
+
+Examples:
+
+Scenario: Should be able to delete a book
+
+Meta:
+
+
+When Web user clicks the element book123
+When Web user clicks the element deleteBook
+Then Web element book123 is hidden
 
 Examples:
