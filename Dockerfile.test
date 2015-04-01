@@ -30,3 +30,8 @@ CMD ["/app/run_tests.sh"]
 
 # docker build -t vfarcic/books-fe-tests .
 # docker run -t --rm vfarcic/books-fe-tests
+# docker run -t --rm \
+#   -v /home/vifarcic/IdeaProjects/books-fe/stories:/opt/bdd/data/stories \
+#   vfarcic/bdd-runner-phantomjs \
+#   -P url=http://172.17.42.1:8080 \
+#   -P widthHeight=1024,768
