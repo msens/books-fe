@@ -11,7 +11,7 @@ var util = require('gulp-util');
 require('jshint-stylish');
 require('gulp-grunt')(gulp);
 
-gulp.task('default', ['test', 'js', 'html']);
+gulp.task('default', ['js', 'html', 'test']);
 
 gulp.task('html', function() {
     gulp.src(['src/html/menu.tmpl.html'])

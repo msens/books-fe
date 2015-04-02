@@ -16,10 +16,9 @@ ADD index.html /app/
 ADD api /app/api
 ADD src /app/src
 
-CMD ["/app/run.sh"]
+RUN gulp
 
-# UNIT TESTS
-# docker run -t --rm -e MODE=unit_tests vfarcic/books-fe
+CMD ["/app/run.sh"]
 
 # MOCK SERVER
 # docker run -d --name books-fe-mock -e MODE=mock_server -e MOCK_PORT=9002 -p 9001:8080 -p 9002:9002 vfarcic/books-fe
