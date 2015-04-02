@@ -5,7 +5,7 @@ WORKDIR /app
 
 ADD package.json /app/
 ADD bower.json /app/
-RUN npm install
+RUN npm install --unsafe-perm
 
 ADD run.sh /app/
 ADD Gruntfile.js /app/
