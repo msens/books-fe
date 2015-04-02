@@ -62,41 +62,60 @@ TODO
 
 Create a new branch
 Remove Dockerfile, create_docker.md and run.sh from the master branch
+Remove Solutions section of README.md from the master branch
 Change presentation references in notes to the new branch
+
+Solutions
+=========
+
+Build
+-----
+
+```bash
+sudo docker build -t books-fe .
+```
 
 Mock Server
 -----------
 
 ```bash
-docker run -d --name books-fe-mock \
+sudo docker run -d --name books-fe-mock \
   -e MODE=mock_server -e MOCK_PORT=9002 \
   -p 9001:8080 -p 9002:9002 \
-  vfarcic/books-fe
+  books-fe
 ```
 
-Functional Tests
-----------------
+Functional Tests (BDD)
+----------------------
 
 ```bash
-docker run -t --rm \
-  -v /home/vifarcic/IdeaProjects/books-fe/stories:/opt/bdd/data/stories \
+sudo docker run -t --rm \
+  -v $PWD/stories:/opt/bdd/data/stories \
   vfarcic/bdd-runner-phantomjs \
   -P url=http://172.17.42.1:9001 \
   -P widthHeight=1024,768 \
   --story_path data/stories/functional/**
 
-Production Server
------------------
+Push to Registry
+----------------
 
 ```bash
-docker run -d --name books-fe -p 9003:8080 vfarcic/books-fe
+sudo docker tag books-fe 192.168.50.91:5000/books-fe
+sudo docker push 192.168.50.91:5000/books-fe
 ```
 
-Integration Tests
+Production Server (TODO)
 -----------------
 
 ```bash
-docker run -t --rm \
+sudo docker run -d --name books-fe -p 9003:8080 vfarcic/books-fe
+```
+
+Integration Tests (TODO)
+-----------------
+
+```bash
+sudo docker run -t --rm \
   -v /home/vifarcic/IdeaProjects/books-fe/stories:/opt/bdd/data/stories \
   vfarcic/bdd-runner-phantomjs \
   -P url=http://172.17.42.1:9003 \
