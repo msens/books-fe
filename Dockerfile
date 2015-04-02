@@ -1,21 +1,12 @@
-FROM google/nodejs
+FROM vfarcic/books-fe-base
 MAINTAINER Viktor Farcic "viktor@farcic.com"
-
-# PhantomJS
-RUN apt-get update
-RUN apt-get install -y build-essential g++ flex bison gperf ruby perl \
-  libsqlite3-dev libfontconfig1-dev libicu-dev libfreetype6 libssl-dev \
-  libpng-dev libjpeg-dev
 
 WORKDIR /app
 
 ADD package.json /app/
 ADD bower.json /app/
-RUN npm install -g grunt-cli
-RUN npm install -g gulp
-RUN npm install -g bower
-RUN npm install -g json-server
 RUN npm install
+
 
 ADD run.sh /app/
 ADD Gruntfile.js /app/
