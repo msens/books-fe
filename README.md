@@ -61,6 +61,6 @@ TODO
 ====
 
 Create a new branch
-Remove Dockerfile, Dockerfile.unit_tests
+Remove Dockerfile and run.sh
 Change presentation references in notes to the new branch
 

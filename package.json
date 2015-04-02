@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "postinstall": "bower install | xargs echo && gulp js",
+    "postinstall": "bower install --allow-root | xargs echo && gulp js",
     "start": "node web.js",
     "start-with-mocks": "node web.js & json-server api/mocks.json --port 8081"
   },

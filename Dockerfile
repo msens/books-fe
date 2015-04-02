@@ -7,7 +7,6 @@ ADD package.json /app/
 ADD bower.json /app/
 RUN npm install
 
-
 ADD run.sh /app/
 ADD Gruntfile.js /app/
 ADD gulpfile.js /app/
