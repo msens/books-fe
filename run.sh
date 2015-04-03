@@ -10,7 +10,3 @@ then
 else
   npm start
 fi
-#gulp html --mock 8081 &
-#gulp js --mock 8081 &
-#json-server api/mocks.json --port 8081 &
-#npm start
