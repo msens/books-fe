@@ -24,7 +24,7 @@ angular.module('booksModule', ['ngTable'])
                 var url = $scope.getApiUrl('/books');
                 $scope.book.link = url + '/' + $scope.book.id;
                 if (angular.equals($scope.originalBook, {})) {
-                    $http.post(url, $scope.book).then(function() {
+                    $http.put(url, $scope.book).then(function() {
                         $scope.listBooks();
                         $scope.newBook();
                     });
