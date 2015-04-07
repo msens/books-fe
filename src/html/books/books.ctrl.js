@@ -11,9 +11,6 @@ angular.module('booksModule', ['ngTable'])
             $scope.openBook = function(bookId) {
                 $http.get($scope.getApiUrl('/books', bookId)).then(function(response) {
                     $scope.book = response.data;
-                    if (angular.isArray(response.data)) {
-                        $scope.book = $scope.book[0];
-                    }
                     $scope.originalBook = angular.copy($scope.book);
                 });
             };
@@ -97,9 +94,7 @@ angular.module('booksModule', ['ngTable'])
             $scope.getDomain = function() {
                 return $location.protocol() + '://' + $location.host();
             };
-            // TODO Test
             $scope.listBooks();
-            // TODO Test
             $scope.newBook();
         }
     ]);

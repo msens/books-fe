@@ -61,7 +61,7 @@ TODO
 ====
 
 Create a new branch
-Remove Dockerfile, create_docker.md and run.sh from the master branch
+Remove Dockerfile and run.sh from the master branch
 Remove Solutions section of README.md from the master branch
 Change presentation references in notes to the new branch
 
