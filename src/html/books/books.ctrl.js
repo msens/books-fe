@@ -11,6 +11,9 @@ angular.module('booksModule', ['ngTable'])
             $scope.openBook = function(bookId) {
                 $http.get($scope.getApiUrl('/books', bookId)).then(function(response) {
                     $scope.book = response.data;
+                    if (angular.isArray($scope.book)) {
+                        $scope.book = $scope.book[0];
+                    }
                     $scope.originalBook = angular.copy($scope.book);
                 });
             };
@@ -20,6 +23,9 @@ angular.module('booksModule', ['ngTable'])
             };
             $scope.saveBook = function() {
                 $scope.book.link = $scope.getApiUrl('/books', $scope.book._id);
+                if ($location.search().mocksPort !== undefined) {
+                    $scope.book.id = $scope.book._id;
+                }
                 $http.post($scope.getApiUrl('/books'), $scope.book).then(function() {
                     $scope.listBooks();
                     $scope.newBook();
@@ -29,7 +35,11 @@ angular.module('booksModule', ['ngTable'])
                 $scope.book = angular.copy($scope.originalBook);
             };
             $scope.deleteBook = function() {
-                $http.delete($scope.getApiUrl('/books/' + $scope.book._id)).then(function() {
+                var url = $scope.getApiUrl('/books/_id/' + $scope.book._id);
+                if ($location.search().mocksPort !== undefined) {
+                    url = $scope.getApiUrl('/books/' + $scope.book._id);
+                }
+                $http.delete(url).then(function() {
                     $scope.listBooks();
                     $scope.newBook();
                 });

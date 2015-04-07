@@ -92,31 +92,31 @@ describe('booksModule controllers', function() {
                 scope.originalBook = book;
             });
             it('should call PUT /api/v1/books', function() {
-                httpBackend.expectPUT(putUrl).respond();
+                httpBackend.expectPOST(putUrl).respond();
                 scope.saveBook();
                 httpBackend.flush();
             });
             it('should call add link to the book and send it as part of the request', function() {
                 var modifiedBook = angular.copy(book);
                 modifiedBook.link = '/api/v1/books/_id/1';
-                httpBackend.expectPUT(putUrl, modifiedBook).respond();
+                httpBackend.expectPOST(putUrl, modifiedBook).respond();
                 scope.saveBook();
                 httpBackend.flush();
             });
             it('should call listBooks function', function() {
-                httpBackend.expectPUT(putUrl).respond();
+                httpBackend.expectPOST(putUrl).respond();
                 scope.saveBook();
                 httpBackend.flush();
                 expect(scope.listBooks).toHaveBeenCalled();
             });
             it('should call newBook function when book is updated', function() {
-                httpBackend.expectPUT(putUrl).respond();
+                httpBackend.expectPOST(putUrl).respond();
                 scope.saveBook();
                 httpBackend.flush();
                 expect(scope.newBook).toHaveBeenCalled();
             });
             it('should call newBook function when new book is saved', function() {
-                httpBackend.expectPUT(putUrl).respond();
+                httpBackend.expectPOST(putUrl).respond();
                 scope.originalBook = {};
                 scope.saveBook();
                 httpBackend.flush();
@@ -124,7 +124,7 @@ describe('booksModule controllers', function() {
             });
             it('should call POST /api/v1/books when new book is saved', function() {
                 scope.originalBook = {};
-                httpBackend.expectPUT(putUrl).respond();
+                httpBackend.expectPOST(putUrl).respond();
                 scope.saveBook();
                 httpBackend.flush();
             });
@@ -144,9 +144,9 @@ describe('booksModule controllers', function() {
                 spyOn(scope, 'listBooks');
                 spyOn(scope, 'newBook');
                 scope.book = book;
-                httpBackend.expectDELETE('/api/v1/books/' + book._id).respond();
+                httpBackend.expectDELETE('/api/v1/books/_id/' + book._id).respond();
             });
-            it('should call DELETE /api/v1/books/[BOOK_ID]', function() {
+            it('should call DELETE /api/v1/books/_id/[BOOK_ID]', function() {
                 scope.deleteBook();
                 httpBackend.flush();
             });
@@ -172,14 +172,14 @@ describe('booksModule controllers', function() {
                 var expected = {
                     'has-error': true,
                     'has-success': false
-                }
+                };
                 expect(scope.cssClass(ngModelController)).toEqual(expected);
             });
             it('should return has-success when model controller is valid', function() {
                 var expected = {
                     'has-error': false,
                     'has-success': true
-                }
+                };
                 expect(scope.cssClass(ngModelController)).toEqual(expected);
             });
         });
