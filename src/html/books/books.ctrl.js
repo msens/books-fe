@@ -20,7 +20,6 @@ angular.module('booksModule', ['ngTable'])
             };
             $scope.saveBook = function() {
                 $scope.book.link = $scope.getApiUrl('/books', $scope.book._id);
-                //$http.put($scope.getApiUrl('/books'), $scope.book).then(function() {
                 $http.post($scope.getApiUrl('/books'), $scope.book).then(function() {
                     $scope.listBooks();
                     $scope.newBook();
