@@ -2,17 +2,18 @@
 angular.module('booksModule', ['ngTable'])
     .controller('booksCtrl', ['$scope', '$http', '$location', 'ngTableParams',
         function ($scope, $http, $location, ngTableParams) {
-        // http://localhost:8081
             $scope.listBooks = function() {
-                // TODO Skip asking server after PUT or DELETE requests
                 $http.get($scope.getApiUrl('/books')).then(function(response) {
                     $scope.books = response.data;
                     $scope.setTableParams();
                 });
             };
             $scope.openBook = function(bookId) {
-                $http.get($scope.getApiUrl('/books/' + bookId)).then(function(response) {
+                $http.get($scope.getApiUrl('/books', bookId)).then(function(response) {
                     $scope.book = response.data;
+                    if (angular.isArray(response.data)) {
+                        $scope.book = $scope.book[0];
+                    }
                     $scope.originalBook = angular.copy($scope.book);
                 });
             };
@@ -21,25 +22,18 @@ angular.module('booksModule', ['ngTable'])
                 $scope.originalBook = angular.copy($scope.book);
             };
             $scope.saveBook = function() {
-                var url = $scope.getApiUrl('/books');
-                $scope.book.link = url + '/' + $scope.book.id;
-                if (angular.equals($scope.originalBook, {})) {
-                    $http.post(url, $scope.book).then(function() {
-                        $scope.listBooks();
-                        $scope.newBook();
-                    });
-                } else {
-                    $http.put(url + '/' + $scope.book.id, $scope.book).then(function() {
-                        $scope.listBooks();
-                        $scope.newBook();
-                    });
-                }
+                $scope.book.link = $scope.getApiUrl('/books', $scope.book._id);
+                //$http.put($scope.getApiUrl('/books'), $scope.book).then(function() {
+                $http.post($scope.getApiUrl('/books'), $scope.book).then(function() {
+                    $scope.listBooks();
+                    $scope.newBook();
+                });
             };
             $scope.revertBook = function() {
                 $scope.book = angular.copy($scope.originalBook);
             };
             $scope.deleteBook = function() {
-                $http.delete($scope.getApiUrl('/books/' + $scope.book.id)).then(function() {
+                $http.delete($scope.getApiUrl('/books/' + $scope.book._id)).then(function() {
                     $scope.listBooks();
                     $scope.newBook();
                 });
@@ -65,8 +59,8 @@ angular.module('booksModule', ['ngTable'])
             $scope.canDeleteBook = function() {
                 return (
                     typeof $scope.book !== 'undefined' &&
-                    typeof $scope.book.id !== 'undefined' &&
-                    $scope.book.id !== ''
+                    typeof $scope.book._id !== 'undefined' &&
+                    $scope.book._id !== ''
                 );
             };
             $scope.setTableParams = function() {
@@ -86,11 +80,18 @@ angular.module('booksModule', ['ngTable'])
                     }
                 });
             };
-            $scope.getApiUrl = function(url) {
+            $scope.getApiUrl = function(url, bookId) {
+                var newUrl = url;
                 if ($location.search().mocksPort !== undefined) {
-                    return $scope.getDomain() + ':' + $location.search().mocksPort + url;
+                    if (bookId !== undefined) {
+                        newUrl = newUrl + '?_id=' + bookId;
+                    }
+                    return $scope.getDomain() + ':' + $location.search().mocksPort + newUrl;
                 } else {
-                    return '/api/v1' + url;
+                    if (bookId !== undefined) {
+                        newUrl = newUrl + '/_id/' + bookId;
+                    }
+                    return '/api/v1' + newUrl;
                 }
             };
             $scope.getDomain = function() {

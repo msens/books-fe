@@ -11,7 +11,7 @@ describe('booksModule controllers', function() {
 
         beforeEach(
             inject(function($rootScope, $injector, $controller, $httpBackend, $location, ngTableParams) {
-                book = {id: 1};
+                book = {_id: 1};
                 books = [book];
                 scope = $rootScope.$new();
                 location = $location;
@@ -49,21 +49,22 @@ describe('booksModule controllers', function() {
 
         describe('openBook function', function() {
             beforeEach(function() {
-                httpBackend.expectGET('/api/v1/books/' + book.id).respond(book);
+                var url = scope.getApiUrl('/books', book._id);
+                httpBackend.expectGET(url).respond(book);
             });
-            it('should call GET /api/v1/books/[BOOK_ID]', function() {
-                scope.openBook(book.id);
+            it('should call GET /api/v1/books/_id/[BOOK_ID]', function() {
+                scope.openBook(book._id);
                 httpBackend.flush();
             });
             it('should set value to the book variable', function() {
                 scope.book = {};
-                scope.openBook(book.id);
+                scope.openBook(book._id);
                 httpBackend.flush();
                 expect(scope.book).toEqual(book);
             });
             it('should set value to the originalBook variable', function() {
                 scope.originalBook = {};
-                scope.openBook(book.id);
+                scope.openBook(book._id);
                 httpBackend.flush();
                 expect(scope.originalBook).toEqual(book);
             });
@@ -83,8 +84,7 @@ describe('booksModule controllers', function() {
         });
 
         describe('saveBook function', function() {
-            var putUrl = '/api/v1/books/1';
-            var postUrl = '/api/v1/books';
+            var putUrl = '/api/v1/books';
             beforeEach(function() {
                 spyOn(scope, 'listBooks');
                 spyOn(scope, 'newBook');
@@ -98,7 +98,7 @@ describe('booksModule controllers', function() {
             });
             it('should call add link to the book and send it as part of the request', function() {
                 var modifiedBook = angular.copy(book);
-                modifiedBook.link = putUrl;
+                modifiedBook.link = '/api/v1/books/_id/1';
                 httpBackend.expectPUT(putUrl, modifiedBook).respond();
                 scope.saveBook();
                 httpBackend.flush();
@@ -116,7 +116,7 @@ describe('booksModule controllers', function() {
                 expect(scope.newBook).toHaveBeenCalled();
             });
             it('should call newBook function when new book is saved', function() {
-                httpBackend.expectPOST(postUrl).respond();
+                httpBackend.expectPUT(putUrl).respond();
                 scope.originalBook = {};
                 scope.saveBook();
                 httpBackend.flush();
@@ -124,7 +124,7 @@ describe('booksModule controllers', function() {
             });
             it('should call POST /api/v1/books when new book is saved', function() {
                 scope.originalBook = {};
-                httpBackend.expectPOST(postUrl).respond();
+                httpBackend.expectPUT(putUrl).respond();
                 scope.saveBook();
                 httpBackend.flush();
             });
@@ -144,7 +144,7 @@ describe('booksModule controllers', function() {
                 spyOn(scope, 'listBooks');
                 spyOn(scope, 'newBook');
                 scope.book = book;
-                httpBackend.expectDELETE('/api/v1/books/' + book.id).respond();
+                httpBackend.expectDELETE('/api/v1/books/' + book._id).respond();
             });
             it('should call DELETE /api/v1/books/[BOOK_ID]', function() {
                 scope.deleteBook();
@@ -249,11 +249,11 @@ describe('booksModule controllers', function() {
                 expect(scope.canDeleteBook()).toEqual(false);
             });
             it('should return false when book ID is undefined', function() {
-                scope.book.id = undefined;
+                scope.book._id = undefined;
                 expect(scope.canDeleteBook()).toEqual(false);
             });
             it('should return false when book ID is empty', function() {
-                scope.book.id = '';
+                scope.book._id = '';
                 expect(scope.canDeleteBook()).toEqual(false);
             });
         });
@@ -295,13 +295,21 @@ describe('booksModule controllers', function() {
 
         describe('getApiUrl function', function() {
             var url = '/my/url';
+            var mocksPort = '1234';
+            var booksId = 123;
             it('should return /api/v1', function() {
                 expect(scope.getApiUrl(url)).toEqual('/api/v1' + url);
             });
             it('should use mocksPort search param', function() {
-                var mocksPort = '1234';
                 location.search('mocksPort', mocksPort);
                 expect(scope.getApiUrl(url)).toEqual(scope.getDomain() + ':' + mocksPort + url);
+            });
+            it('should add _id to the URL when second argument is defined', function() {
+                expect(scope.getApiUrl(url, booksId)).toEqual('/api/v1' + url + '/_id/' + booksId);
+            });
+            it('should add _id to the URL as query param when second argument is defined and mocksPort is search param', function() {
+                location.search('mocksPort', mocksPort);
+                expect(scope.getApiUrl(url, booksId)).toEqual(scope.getDomain() + ':' + mocksPort + url + '?_id=' + booksId);
             });
         });
 
