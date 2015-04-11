@@ -19,3 +19,5 @@ ADD src /app/src
 RUN gulp
 
 CMD ["/app/run.sh"]
+
+EXPOSE 8080
