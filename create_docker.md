@@ -16,4 +16,5 @@ bower install --allow-root | xargs echo
 gulp
 ```
 9. Set `/app/run.sh` as the Docker command
-10. Build the container using `sudo docker build -t books-fe .` command
+10. Expose port 8080
+11. Build the container using `sudo docker build -t books-fe .` command
