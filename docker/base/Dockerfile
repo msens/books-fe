@@ -1,4 +1,4 @@
-FROM google/nodejs
+FROM node:0.10-onbuild
 MAINTAINER Viktor Farcic "viktor@farcic.com"
 
 # PhantomJS
